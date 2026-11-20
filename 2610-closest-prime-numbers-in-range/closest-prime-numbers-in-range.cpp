@@ -1,8 +1,7 @@
 class Solution {
 public:
-
     bool isPrime(int n){
-        if(n<2){
+        if(n<=1){
             return false;
         }
         for(int i=2;i*i<=n;i++){
@@ -12,21 +11,21 @@ public:
         }
         return true;
     }
+
     vector<int> closestPrimes(int left, int right) {
-        vector<int> temp;
+        vector<int> prime;
         for(int i=left;i<=right;i++){
             if(isPrime(i)){
-                temp.push_back(i);
+                prime.push_back(i);
             }
         }
-        int n=temp.size();
-        vector<int> ans(2, -1);
+        vector<int> ans(2,-1);
         int prev=INT_MAX, curr=0;
-        for(int i=0;i<n-1;i++){
-            curr=temp[i+1]-temp[i];
+        for(int i=0;i+1<prime.size();i++){
+            curr=prime[i+1]-prime[i];
             if(curr<prev){
-                ans[0]=temp[i];
-                ans[1]=temp[i+1];
+                ans[0]=prime[i];
+                ans[1]=prime[i+1];
                 prev=curr;
             }
         }
